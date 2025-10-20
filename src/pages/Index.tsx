@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);
@@ -411,7 +413,11 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer">
+              <Card 
+                key={index} 
+                className="overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                onClick={() => navigate('/blog/1')}
+              >
                 <div className="relative h-48 overflow-hidden">
                   <img 
                     src={post.image} 
